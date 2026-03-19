@@ -5,14 +5,27 @@ const observer = new IntersectionObserver((entries, observer) => {
         if (!entry.isIntersecting) return;
 
         const image = entry.target;
-        image.src = image.src.replace("&w=10&", "&w=1000&");
+        
+        const highResImage = new Image();
+        highResImage.src = image.src.replace("&w=10&", "&w=1000&")
+
+            highResImage.onload = () => {
+                image.src = highResImage.src;
+                image.classList.add("loaded");
+            }
+            
         observer.unobserve(image);
     });
 }, {});
 
 images.forEach((image, index) => {
     if (index === 0) {
-        image.src = image.src.replace("&w=10", "&w=1000");
+        const highResImage = new Image();
+        highResImage.src = image.src.replace("&w=10", "&w=1000");
+        highResImage.onload = () => {
+            image.src = highResImage.src;
+            image.classList.add("loaded");
+        };
         return;
     }
     observer.observe(image);

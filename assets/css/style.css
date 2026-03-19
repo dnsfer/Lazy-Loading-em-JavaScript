@@ -15,7 +15,7 @@ body{
     padding: 2rem;
     color: #e7e4d9;
     background-color: #000000;
-    width: 150vw;
+    
 }
 
 /* CONTAINER DE IMAGE */
@@ -38,6 +38,14 @@ body{
     max-width: 1000px;
     margin: 0 auto;
     height: auto;
+    filter: blur(10px);
+    transition: filter .6s ease, opacity .6s ease, transform .6s ease;
+}
+
+.image-container img.loaded{
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
 }
 
 .image-container p {
